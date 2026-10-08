@@ -1,0 +1,810 @@
+body {
+    background: red !important;
+}
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+   --black: #0d0d0d;
+    --cream: #f2eadc;
+    --red: #c9362c;
+    --red-dark: #8e211b;
+    --gray: #918c83;
+    --line: #302d29;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--black);
+    color: var(--cream);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+}
+
+button,
+a {
+    font: inherit;
+}
+
+
+/* ==============================
+   LOADER
+============================== */
+
+#loader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    background: #6D5ACF;
+    color: var(--black);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: opacity .7s ease, visibility .7s ease;
+}
+
+#loader.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader-content {
+    width: min(900px, 88%);
+}
+
+.loader-content .mono:first-child {
+    color: var(--black);
+}
+
+.loader-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(80px, 15vw, 190px);
+    line-height: .75;
+    letter-spacing: -.06em;
+    font-weight: 400;
+    margin: 35px 0 55px;
+}
+
+.loader-status {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.loader-status b {
+    font-weight: 500;
+}
+
+#enterButton {
+    margin-top: 50px;
+
+    background: var(--black);
+    color: var(--cream);
+
+    border: none;
+
+    padding: 17px 28px;
+
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    transition: transform .25s ease;
+}
+
+#enterButton:hover {
+    transform: translate(7px, -7px);
+}
+
+
+/* ==============================
+   WEBSITE
+============================== */
+
+#website {
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+#website.visible {
+    opacity: 1;
+}
+
+
+/* ==============================
+   NAV
+============================== */
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    padding: 22px 35px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    z-index: 100;
+
+    background: rgba(17, 16, 14, .88);
+    backdrop-filter: blur(8px);
+
+    border-bottom: 1px solid var(--line);
+}
+
+.nav-logo {
+   font-family: 'DM Mono', monospace;
+    font-size: 25px;
+}
+
+.nav-session,
+.menu-button {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+
+.menu-button {
+    background: none;
+    border: none;
+    color: var(--cream);
+    cursor: pointer;
+}
+
+
+/* ==============================
+   HERO
+============================== */
+
+.hero {
+    min-height: 100vh;
+
+    padding: 140px 35px 45px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.hero::after {
+    content: "026";
+
+    position: absolute;
+
+    right: -30px;
+    bottom: -90px;
+
+    font-family: 'DM Serif Display', serif;
+
+    font-size: 42vw;
+
+    line-height: .7;
+
+    color: var(--red);
+
+    opacity: .9;
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+.hero-small,
+.hero h1,
+.hero-bottom {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-small {
+    color: var(--gray);
+}
+
+.hero-small::before {
+    content: "●";
+    color: var(--red);
+    margin-right: 10px;
+}
+
+.hero h1 {
+    font-family: 'DM Serif Display', serif;
+
+    font-size: clamp(90px, 16vw, 230px);
+
+    line-height: .72;
+
+    letter-spacing: -.07em;
+
+    font-weight: 400;
+
+    max-width: 1200px;
+
+    text-transform: uppercase;
+}
+
+.hero-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.hero-bottom p {
+    max-width: 390px;
+
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.hero-meta {
+    color: var(--red);
+    text-align: right;
+}
+
+
+/* ==============================
+   MARQUEE
+============================== */
+
+.marquee {
+    overflow: hidden;
+
+    background: var(--cream);
+    color: var(--black);
+
+    padding: 17px 0;
+
+    transform: rotate(-1deg) scale(1.02);
+
+    border-top: 2px solid var(--black);
+    border-bottom: 2px solid var(--black);
+}
+
+.marquee-track {
+    width: max-content;
+
+    display: flex;
+    gap: 45px;
+
+    animation: marquee 20s linear infinite;
+
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+
+    font-weight: 500;
+
+    letter-spacing: .12em;
+}
+
+.marquee-track span::after {
+    content: "✦";
+    color: #D8A23A;
+    margin-left: 45px;
+}
+
+@keyframes marquee {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+
+/* ==============================
+   SECTIONS
+============================== */
+
+.work,
+.about,
+.contact {
+    padding: 180px 35px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+
+    padding-bottom: 20px;
+
+    border-bottom: 1px solid var(--line);
+
+    color: var(--gray);
+
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: .1em;
+}
+
+.section-header span:first-child {
+    color: #D8A23A;
+}
+
+
+/* ==============================
+   PROJECTS
+============================== */
+
+.project {
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns: 70px 1fr 60px;
+
+    gap: 30px;
+
+    padding: 80px 0;
+
+    border-bottom: 1px solid var(--line);
+
+    cursor: pointer;
+
+    transition: padding .4s ease;
+}
+
+.project::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 0;
+    height: 5px;
+
+    background: var(--red);
+
+    transition: width .5s ease;
+}
+
+.project:hover::before {
+    width: 100%;
+}
+
+.project:hover {
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.project-number {
+    color: var(--red);
+
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+}
+
+.project-info > p {
+    color: var(--gray);
+
+    margin-bottom: 20px;
+
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: .1em;
+}
+
+.project h2 {
+    font-family: 'DM Serif Display', serif;
+
+    font-size: clamp(60px, 9vw, 130px);
+
+    line-height: .78;
+
+    letter-spacing: -.06em;
+
+    font-weight: 400;
+
+    transition: color .3s ease;
+}
+
+.project:hover h2 {
+    color: var(--red);
+}
+
+.description {
+    max-width: 500px;
+
+    color: var(--gray);
+
+    margin-top: 35px;
+
+    line-height: 1.6;
+
+    font-size: 14px;
+}
+
+.project-arrow {
+    align-self: center;
+
+    font-size: 40px;
+
+    transition: .4s ease;
+}
+
+.project:hover .project-arrow {
+    color: var(--red);
+    transform: translate(8px, -8px);
+}
+
+
+/* ==============================
+   ABOUT
+============================== */
+
+.about {
+    background: var(--cream);
+    color: var(--black);
+
+    position: relative;
+}
+
+.about .section-header {
+    border-color: #c7c1b7;
+}
+
+.about .section-header span:first-child {
+    color: var(--red);
+}
+
+.about-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 100px;
+
+    padding-top: 80px;
+}
+
+.about h2 {
+    font-family: 'DM Serif Display', serif;
+
+    font-size: clamp(65px, 9vw, 135px);
+
+    line-height: .78;
+
+    letter-spacing: -.06em;
+
+    font-weight: 400;
+}
+
+.about-text {
+    max-width: 550px;
+}
+
+.about-text p {
+    font-size: 17px;
+
+    line-height: 1.7;
+
+    margin-bottom: 30px;
+}
+
+.skills {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin-top: 50px;
+}
+
+.skills span {
+    border: 1px solid #aaa49a;
+
+    padding: 10px 13px;
+
+    font-family: 'DM Mono', monospace;
+
+    font-size: 9px;
+
+    letter-spacing: .08em;
+
+    transition: .25s ease;
+}
+
+.skills span:hover {
+    background: var(--red);
+    border-color: var(--red);
+    color: var(--black);
+}
+
+
+/* ==============================
+   CONTACT
+============================== */
+
+.contact {
+    min-height: 90vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.contact h2 {
+    font-family: 'DM Serif Display', serif;
+
+    font-size: clamp(80px, 13vw, 180px);
+
+    line-height: .76;
+
+    letter-spacing: -.07em;
+
+    margin: 100px 0;
+}
+
+.email {
+    color: var(--cream);
+
+    font-family: 'DM Mono', monospace;
+
+    font-size: 13px;
+
+    text-decoration: none;
+
+    border-bottom: 1px solid var(--cream);
+
+    padding-bottom: 7px;
+
+    transition: .25s ease;
+}
+
+.email:hover {
+    color: var(--red);
+    border-color: var(--red);
+}
+
+
+/* ==============================
+   FOOTER
+============================== */
+
+footer {
+    border-top: 1px solid var(--line);
+
+    padding: 30px 35px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    font-family: 'DM Mono', monospace;
+
+    font-size: 9px;
+
+    color: var(--gray);
+
+    letter-spacing: .08em;
+}
+
+
+/* ==============================
+   MOBILE
+============================== */
+
+@media (max-width: 700px) {
+
+    nav {
+        padding: 20px;
+    }
+
+    .hero {
+        padding: 120px 20px 30px;
+    }
+
+    .hero h1 {
+        font-size: 23vw;
+    }
+
+    .hero::after {
+        font-size: 65vw;
+    }
+
+    .hero-bottom {
+        align-items: flex-start;
+        gap: 30px;
+    }
+
+    .hero-bottom p {
+        font-size: 13px;
+    }
+
+    .work,
+    .about,
+    .contact {
+        padding: 110px 20px;
+    }
+
+    .project {
+        grid-template-columns: 30px 1fr 25px;
+        gap: 10px;
+        padding: 55px 0;
+    }
+
+    .project h2 {
+        font-size: 48px;
+    }
+
+    .project:hover {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+
+    .about h2 {
+        font-size: 72px;
+    }
+
+    footer {
+        padding: 25px 20px;
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+/* ==============================
+   PROJECT MEDIA
+============================== */
+
+.project-media {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 60px;
+    max-width: 1100px;
+}
+
+.media-main {
+    min-height: 560px;
+}
+
+.media-side {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 12px;
+}
+
+.media-image {
+    position: relative;
+    overflow: hidden;
+    background: #22201d;
+}
+
+.media-main video {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+..media-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    transition: transform .7s ease;
+}
+
+/* ==============================
+   PROJECT MEDIA — MOBILE
+============================== */
+
+@media (max-width: 700px) {
+
+    .project-media {
+        grid-template-columns: 1fr;
+
+        margin-top: 40px;
+    }
+
+    .media-main {
+        min-height: 400px;
+    }
+
+    .media-side {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 200px;
+    }
+
+}
+/* ==============================
+   REAL PROJECT MEDIA
+============================== */
+
+.media-main,
+.media-image {
+    position: relative;
+    overflow: hidden;
+    background: #22201d;
+}
+
+.media-main {
+    min-height: 520px;
+}
+
+.media-main video,
+.media-image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition: transform .7s ease;
+}
+
+.media-image {
+    min-height: 254px;
+}
+
+.media-main:hover video,
+.media-image:hover img {
+    transform: scale(1.04);
+}
+
+.media-label {
+    position: absolute;
+
+    bottom: 12px;
+    left: 12px;
+
+    padding: 7px 9px;
+
+    background: var(--red);
+    color: var(--black);
+
+    font-family: 'DM Mono', monospace;
+
+    font-size: 8px;
+
+    letter-spacing: .1em;
+}
+.profile-video {
+    overflow: hidden;
+    background: var(--black);
+}
+
+.profile-video video {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform .6s ease;
+}
+
+.profile-video:hover video {
+    transform: scale(1.03);
+}
